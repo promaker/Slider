@@ -27,18 +27,20 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "symfony/class-loader": "v2.4.2",
-        "promaker/base": "dev-master"
+        "promaker/base": "dev-master",
+        "adodb/adodb-php": "dev-master"
     },
     "require-dev": {
         "php": ">=5.3.0",
-        "symfony/class-loader": "v2.4.2",
-        "promaker/base": "dev-master"
+        "promaker/base": "dev-master",
+        "adodb/adodb-php": "dev-master"
     },
     "suggest": {
         "php": ">=5.3.0",
         "symfony/class-loader": "v2.4.2",
-        "promaker/base": "dev-master"
+        "symfony/yaml": "v2.4.2",
+		"symfony/config": "v2.4.2",
+		"symfony/dependency-injection": "v2.4.2"
     },
     "autoload": {
        "psr-0": { "Promaker\\Component\\Slider\\": "" }
