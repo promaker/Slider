@@ -27,12 +27,12 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "promaker/base": "dev-master",
+        "promaker/base": "dev-master@dev",
         "adodb/adodb-php": "dev-master"
     },
     "require-dev": {
         "php": ">=5.3.0",
-        "promaker/base": "dev-master",
+        "promaker/base": "dev-master@dev",
         "adodb/adodb-php": "dev-master"
     },
     "suggest": {
