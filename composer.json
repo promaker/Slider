@@ -1,0 +1,21 @@
+{
+    "name": "promaker/slider",
+    "description": "Paquete Slider / Repository Pattern",
+    "keywords": ["base"],
+    "homepage": "https://github.com/promaker/Slider",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Luis Guillermo Gallo Hernández",
+            "email": "ggallohernandez@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+    },
+    "autoload": {
+       "psr-0": { "Promaker\\Component\\Slider\\": "" }
+    },
+    "target-dir": "Promaker/Component/Slider"
+}
