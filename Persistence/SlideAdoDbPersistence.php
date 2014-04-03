@@ -2,12 +2,12 @@
 
 namespace Promaker\Component\Slider\Persistence;
 
-use Promaker\Base\Persistence\IPersistence;
+use Promaker\Base\Persistence\APersistence;
 
 /**
 * 
 */
-class SlideAdoDbPersistence implements IPersistence
+class SlideAdoDbPersistence extends APersistence
 {
     private $_db;
 
@@ -87,6 +87,8 @@ class SlideAdoDbPersistence implements IPersistence
     public function retrieveAll()
     {
         $sql = "SELECT Slide.* FROM Slides AS Slide WHERE Slide.Online = 1";
+        $sql .= $this->getConditions();
+        
         $slides = $this->_db->getAll($sql);
 
         if (count($slides) > 0) {
@@ -103,22 +105,22 @@ class SlideAdoDbPersistence implements IPersistence
         $params = array();
 
         if (isset($data['Title'])) {
-            $conditions .= ' AND Slide.Title LIKE ?';
+            $sql .= ' AND Slide.Title LIKE ?';
             $params[] = '%'.$data['Title'].'%';
         }
 
         if (isset($data['Description'])) {
-            $conditions .= ' AND Slide.Description LIKE ?';
+            $sql .= ' AND Slide.Description LIKE ?';
             $params[] = '%'.$data['Description'].'%';
         }
 
         if (isset($data['Img'])) {
-            $conditions .= ' AND Slide.Img LIKE ?';
+            $sql .= ' AND Slide.Img LIKE ?';
             $params[] = '%'.$data['Img'].'%';
         }
 
         if (isset($data['Link'])) {
-            $conditions .= ' AND Slide.Link LIKE ?';
+            $sql .= ' AND Slide.Link LIKE ?';
             $params[] = '%'.$data['Link'].'%';
         }
 
@@ -126,12 +128,12 @@ class SlideAdoDbPersistence implements IPersistence
             $range = $data['CreatedAt'];
 
             if (isset($range['From'])) {
-                $conditions .= ' AND Slide.CreatedAt >= ?';
+                $sql .= ' AND Slide.CreatedAt >= ?';
                 $params[] = $range['From'];
             }
 
             if (isset($range['To'])) {
-                $conditions .= ' AND Slide.CreatedAt <= ?';
+                $sql .= ' AND Slide.CreatedAt <= ?';
                 $params[] = $range['To'];
             }
         }
@@ -140,17 +142,18 @@ class SlideAdoDbPersistence implements IPersistence
             $range = $data['UpdatedAt'];
 
             if (isset($range['From'])) {
-                $conditions .= ' AND Slide.UpdatedAt >= ?';
+                $sql .= ' AND Slide.UpdatedAt >= ?';
                 $params[] = $range['From'];
             }
 
             if (isset($range['To'])) {
-                $conditions .= ' AND Slide.UpdatedAt <= ?';
+                $sql .= ' AND Slide.UpdatedAt <= ?';
                 $params[] = $range['To'];
             }
         }
-
-        $slides = $this->_db->getAll($sql.$conditions, $params);
+        
+        $sql .= $this->getConditions();
+        $slides = $this->_db->getAll($sql, $params);
 
         if (count($slides) > 0) {
             return $slides;

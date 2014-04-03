@@ -3,7 +3,7 @@
 namespace Promaker\Component\Slider\Repository;
 
 use Promaker\Base\Repository\ARepository;
-use Promaker\Base\Persistence\IPersistence;
+use Promaker\Base\Persistence\APersistence;
 use Promaker\Base\Entity\IEntity;
 
 use Promaker\Component\Slider\Factory\SlideFactory as Factory;
@@ -17,7 +17,7 @@ class SlideRepository extends ARepository
 {
     private $_lastId;
 
-    public function __construct(IPersistence $persistence)
+    public function __construct(APersistence $persistence)
     {
         $this->_persistence = $persistence;
     }
